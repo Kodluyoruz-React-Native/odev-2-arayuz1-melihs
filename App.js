@@ -9,7 +9,7 @@ import {
      } from 'react-native';
 
 const textColor = '#B7BDD0';  
-class Login extends Component {
+class App extends Component {
     state = { page: ''};
 
      nextOnPress = () => {
@@ -141,7 +141,7 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default App;
 
 
 const styles = StyleSheet.create({
