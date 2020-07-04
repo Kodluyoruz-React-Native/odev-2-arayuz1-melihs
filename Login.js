@@ -4,24 +4,62 @@ import {
      StyleSheet,
       ImageBackground,
       TouchableOpacity,
-      View,
-      Button
+      View
      } from 'react-native';
 
 class Login extends Component {
-    render() {
+    state = {
+        page: ''
+     };
+
+     nextOnPress = () => {
+        this.setState({
+            page: 'login'
+        });
+    }
+
+    introPage() {
         return (
-            <View style={ styles.container }>
+            <View style={ styles.introContainer}>
+                <Text style={styles.title}>Hoşgeldiniz</Text>
+                <Text style={styles.description}>React Native 2. hafta ödevi</Text>
+                <TouchableOpacity
+                    onPress={ this.nextOnPress}
+                    style={ styles.button}>
+                        <Text style={ styles.buttonText}>Next</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
+    loginPage() {
+        return (
+            <View style={ styles.loginContainer}>
+                <Text style={ styles.title }>Login</Text>
+            </View>
+        )
+    }
+
+    signUpPage(){
+        return (
+            <View style={ styles.loginContainer}>
+                <Text style={ styles.title }>Sign Up Page</Text>
+            </View>
+        )  
+    }
+
+
+    render() {
+        const { page } = this.state;
+        return (
+            <View style={ styles.mainContainer }>
                 <ImageBackground
                     source={require('./assets/bg.png')}
                     style={styles.backgroundImage}
                 >
-                    <Text style={styles.title}>Hoşgeldiniz</Text>
-                    <Text style={styles.description}>React Native 2. hafta ödevi</Text>
-                    
-                    <TouchableOpacity style={ styles.button}>
-                        <Text style={ styles.buttonText}>Next</Text>
-                    </TouchableOpacity>
+                    { page === '' && this.introPage()} 
+                    { page === 'login' && this.loginPage()}
+                    { page === 'signUp' && this.signUpPage()}
                 </ImageBackground>  
             </View>
         )
@@ -32,7 +70,7 @@ export default Login;
 
 
 const styles = StyleSheet.create({
-    container: {
+    mainContainer: {
         flex:1
     },
     backgroundImage: {
@@ -69,5 +107,8 @@ const styles = StyleSheet.create({
         fontSize: 25,
         textAlign: 'center',
         marginVertical: 8,
+    },
+    introContainer: {
+
     }
 });
